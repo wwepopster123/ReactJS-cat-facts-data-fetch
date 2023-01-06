@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import load from "./load.svg";
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [fact, setFact] = useState("");
+  const [isLoad, setIsLoad] = useState(false);
+
+  useEffect(() => {
+    setIsLoad(false);
+  }, [fact]);
+
+  const handleNewFactClick = () => {
+    setIsLoad(true);
+    fetch("https://catfact.ninja/fact")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.fact !== null) setFact(data.fact);
+      });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Cat facts</div>
+      <div className="button">
+        <button onClick={handleNewFactClick}>New fact</button>
+      </div>
+      {isLoad ? (
+        <div className="fact">
+          <img className="load" src={load} />
+        </div>
+      ) : (
+        <div className="fact">{fact}</div>
+      )}
     </div>
   );
 }

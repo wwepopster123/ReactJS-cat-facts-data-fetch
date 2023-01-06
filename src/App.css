@@ -1,38 +1,43 @@
+html {
+  background-image: url("/src/back.png");
+  color: white;
+  font-size: 48px;
+}
+
+@font-face {
+  font-family: "catty";
+  src: url("/public/default-font.ttf");
+}
+
 .App {
   text-align: center;
+  font-family: "catty";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button > * {
+  font-family: "catty";
+  font-size: 24px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button > *:hover {
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fact {
+  font-size: 18px;
+  color: palevioletred;
+  margin-top: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.load {
+  animation: rotating 2s linear infinite;
 }
 
-@keyframes App-logo-spin {
+@keyframes rotating {
   from {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(0deg);
   }
 }
